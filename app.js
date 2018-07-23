@@ -15,7 +15,7 @@ class App extends Component {
     this.getfui();
   }
   getfui= _ =>{
-    fetch('http://localhost:4000/file')
+    fetch('/file')
     .then(response=>response.json())
     .then(response=>this.setState({fuis:response.data}))
     .catch(err=>console.error(err))
@@ -32,7 +32,7 @@ class App extends Component {
     let data=new FormData();
     data.append('file', this.state.selectedFile);
     data.append('name', this.refs.nama.value);
-    axios.post('http://localhost:4000/file/add',data)
+    axios.post('/file/add',data)
     .then(console.log(data))
     .then(this.getfui)
     .catch(err=>console.error(err))
@@ -51,7 +51,7 @@ class App extends Component {
     let fileupload=this.refs.efoto.value;
     let nama=this.refs.enama.value;
     let id=this.refs.eid.value;
-    fetch('http://localhost:4000/file/edit',{
+    fetch('/file/edit',{
       method:'post', 
       headers:{
         'Content-Type':'application/json'
@@ -67,7 +67,7 @@ class App extends Component {
     .catch(err=>console.error(err))
   }
   fRemove=(i)=>{
-    fetch('http://localhost:4000/file/delete',{
+    fetch('/file/delete',{
       method:'post',
        headers:{
         'Content-Type':'application/json'
